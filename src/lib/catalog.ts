@@ -293,14 +293,13 @@ export function featuredProducts() {
 export function searchCatalog(query: string) {
   const q = query.trim().toLowerCase();
   if (!q) return { categories: [] as Category[], products: [] as Product[] };
-  const categories = CATEGORIES.filter((c) => c.name.toLowerCase().includes(q));
+  // Match from the start of a word so "ring" finds rings but not earrings.
+  const pattern = new RegExp(`(^|[\\s-])${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "i");
+  const matches = (text: string) => pattern.test(text);
+  const categories = CATEGORIES.filter((c) => matches(c.name));
   const products = PRODUCTS.filter((p) => {
     const cat = getCategory(p.categorySlug);
-    return (
-      p.name.toLowerCase().includes(q) ||
-      p.code.toLowerCase().includes(q) ||
-      (cat?.name.toLowerCase().includes(q) ?? false)
-    );
+    return matches(p.name) || matches(p.code) || (cat ? matches(cat.name) : false);
   });
   return { categories, products };
 }

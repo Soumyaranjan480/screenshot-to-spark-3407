@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BUSINESS, productEnquiry, telHref, whatsappHref } from "@/lib/business";
-import { CATEGORIES, PRODUCTS, getCategory } from "@/lib/catalog";
+import { CATEGORIES, PRODUCTS, getCategory, searchCatalog } from "@/lib/catalog";
 
 describe("PATRA JEWELLERS contact details", () => {
   it("calls and messages +91 9853527161", () => {
@@ -47,6 +47,11 @@ describe("catalog", () => {
     const codes = PRODUCTS.map((p) => p.code);
     expect(new Set(codes).size).toBe(codes.length);
     for (const p of PRODUCTS) expect(getCategory(p.categorySlug)).toBeDefined();
+  });
+
+  it("search for 'ring' finds rings but not earrings", () => {
+    const { categories } = searchCatalog("ring");
+    expect(categories.map((c) => c.name)).toEqual(["Gold Rings", "Silver Rings"]);
   });
 
   it("does not list prices", () => {
