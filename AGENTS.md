@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Business details (phone, address, owner, WhatsApp links) live only in `src/lib/business.ts`; import from there so contact info never drifts.
+- Demo catalog (categories, products, images) lives in `src/lib/catalog.ts` as static data; no backend until real inventory management is needed.
+- Site-wide chrome (header, footer, floating WhatsApp, toaster) is mounted in `src/routes/__root.tsx`; pages render only their own sections.
+- The contact form hands off to WhatsApp with a prefilled message instead of storing submissions, so no enquiry data is kept on a server.
