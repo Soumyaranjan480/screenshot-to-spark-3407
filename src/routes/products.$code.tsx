@@ -44,7 +44,9 @@ function ProductPage() {
   const parent =
     category.metal === "silver"
       ? ({ label: "Silver Jewellery", to: "/silver-jewellery" } as const)
-      : ({ label: "Gold Jewellery", to: "/gold-jewellery" } as const);
+      : category.metal === "gold"
+        ? ({ label: "Gold Jewellery", to: "/gold-jewellery" } as const)
+        : ({ label: "Collections", to: "/collections" } as const);
 
   return (
     <>
@@ -53,9 +55,9 @@ function ProductPage() {
           <nav aria-label="Breadcrumb" className="mb-8">
             <ol className="flex flex-wrap items-center gap-1.5 text-xs uppercase tracking-[0.16em] text-muted-foreground">
               <li><Link to="/" className="hover:text-gold-deep">Home</Link></li>
-              <ChevronRight className="h-3 w-3" aria-hidden="true" />
+              <li aria-hidden="true"><ChevronRight className="h-3 w-3" /></li>
               <li><Link to={parent.to} className="hover:text-gold-deep">{parent.label}</Link></li>
-              <ChevronRight className="h-3 w-3" aria-hidden="true" />
+              <li aria-hidden="true"><ChevronRight className="h-3 w-3" /></li>
               <li>
                 <Link to="/collections/$category" params={{ category: category.slug }} className="hover:text-gold-deep">
                   {category.name}

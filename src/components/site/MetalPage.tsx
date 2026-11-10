@@ -18,7 +18,6 @@ type Props = {
 export function MetalPage({ metal, title, description, image }: Props) {
   const categories = categoriesByMetal(metal);
   const products = productsByMetal(metal);
-  const extra = metal === "gold" ? categoriesByMetal("traditional") : [];
 
   return (
     <>
@@ -34,7 +33,7 @@ export function MetalPage({ metal, title, description, image }: Props) {
         <div className="container-lux">
           <SectionHeading eyebrow="Categories" title={`Shop ${title}`} />
           <div className="mt-12">
-            <CategoryGrid categories={[...categories, ...extra]} />
+            <CategoryGrid categories={categories} columns={3} />
           </div>
         </div>
       </section>

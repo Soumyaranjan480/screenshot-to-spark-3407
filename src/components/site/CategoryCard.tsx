@@ -36,9 +36,17 @@ export function CategoryCard({ category }: { category: Category }) {
   );
 }
 
-export function CategoryGrid({ categories }: { categories: Category[] }) {
+export function CategoryGrid({
+  categories,
+  columns = 5,
+}: {
+  categories: Category[];
+  columns?: 3 | 5;
+}) {
   return (
-    <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-5">
+    <ul
+      className={`grid grid-cols-2 gap-3 sm:gap-5 ${columns === 3 ? "md:grid-cols-3" : "lg:grid-cols-5"}`}
+    >
       {categories.map((c) => (
         <li key={c.slug}>
           <CategoryCard category={c} />

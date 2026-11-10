@@ -11,8 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GoldJewelleryRouteImport } from './routes/gold-jewellery'
 import { Route as SilverJewelleryRouteImport } from './routes/silver-jewellery'
+import { Route as CollectionsIndexRouteImport } from './routes/collections.index'
+import { Route as CollectionsCategoryRouteImport } from './routes/collections.$category'
+import { Route as ProductsCodeRouteImport } from './routes/products.$code'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GoldJewelleryRoute = GoldJewelleryRouteImport.update({
@@ -34,39 +43,95 @@ const SilverJewelleryRoute = SilverJewelleryRouteImport.update({
   path: '/silver-jewellery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectionsIndexRoute = CollectionsIndexRouteImport.update({
+  id: '/collections/',
+  path: '/collections/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsCategoryRoute = CollectionsCategoryRouteImport.update({
+  id: '/collections/$category',
+  path: '/collections/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsCodeRoute = ProductsCodeRouteImport.update({
+  id: '/products/$code',
+  path: '/products/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/gold-jewellery': typeof GoldJewelleryRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
+  '/collections/$category': typeof CollectionsCategoryRoute
+  '/products/$code': typeof ProductsCodeRoute
+  '/collections/': typeof CollectionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/gold-jewellery': typeof GoldJewelleryRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
+  '/collections/$category': typeof CollectionsCategoryRoute
+  '/products/$code': typeof ProductsCodeRoute
+  '/collections': typeof CollectionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/gold-jewellery': typeof GoldJewelleryRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
+  '/collections/$category': typeof CollectionsCategoryRoute
+  '/products/$code': typeof ProductsCodeRoute
+  '/collections/': typeof CollectionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/gold-jewellery' | '/silver-jewellery'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/gold-jewellery'
+    | '/silver-jewellery'
+    | '/collections/$category'
+    | '/products/$code'
+    | '/collections/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/gold-jewellery' | '/silver-jewellery'
-  id: '__root__' | '/' | '/about' | '/gold-jewellery' | '/silver-jewellery'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/gold-jewellery'
+    | '/silver-jewellery'
+    | '/collections/$category'
+    | '/products/$code'
+    | '/collections'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/gold-jewellery'
+    | '/silver-jewellery'
+    | '/collections/$category'
+    | '/products/$code'
+    | '/collections/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   GoldJewelleryRoute: typeof GoldJewelleryRoute
   SilverJewelleryRoute: typeof SilverJewelleryRoute
+  CollectionsCategoryRoute: typeof CollectionsCategoryRoute
+  ProductsCodeRoute: typeof ProductsCodeRoute
+  CollectionsIndexRoute: typeof CollectionsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,6 +150,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gold-jewellery': {
       id: '/gold-jewellery'
       path: '/gold-jewellery'
@@ -99,14 +171,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SilverJewelleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collections/': {
+      id: '/collections/'
+      path: '/collections'
+      fullPath: '/collections/'
+      preLoaderRoute: typeof CollectionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections/$category': {
+      id: '/collections/$category'
+      path: '/collections/$category'
+      fullPath: '/collections/$category'
+      preLoaderRoute: typeof CollectionsCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$code': {
+      id: '/products/$code'
+      path: '/products/$code'
+      fullPath: '/products/$code'
+      preLoaderRoute: typeof ProductsCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   GoldJewelleryRoute: GoldJewelleryRoute,
   SilverJewelleryRoute: SilverJewelleryRoute,
+  CollectionsCategoryRoute: CollectionsCategoryRoute,
+  ProductsCodeRoute: ProductsCodeRoute,
+  CollectionsIndexRoute: CollectionsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
