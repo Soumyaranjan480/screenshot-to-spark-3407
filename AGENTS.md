@@ -34,3 +34,4 @@ use the editor.
 - Demo catalog (categories, products, images) lives in `src/lib/catalog.ts` as static data; no backend until real inventory management is needed.
 - Site-wide chrome (header, footer, floating WhatsApp, toaster) is mounted in `src/routes/__root.tsx`; pages render only their own sections.
 - The contact form hands off to WhatsApp with a prefilled message instead of storing submissions, so no enquiry data is kept on a server.
+- Home page showcase (auto-sliding hero + moving jewellery strip) lives in `src/components/site/HomeShowcase.tsx`; its motion respects reduced-motion and pauses on hover/focus so it stays accessible.
