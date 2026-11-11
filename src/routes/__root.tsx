@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "PATRA JEWELLERS, Mangalpur, Jajpur, Odisha – a trusted showroom for gold, silver and traditional jewellery.",
       },
       { name: "author", content: "PATRA JEWELLERS" },
-      { name: "theme-color", content: "#651F2B" },
+      { name: "theme-color", content: "#4A2C24" },
       { property: "og:site_name", content: "PATRA JEWELLERS" },
       { property: "og:title", content: "PATRA JEWELLERS" },
       {

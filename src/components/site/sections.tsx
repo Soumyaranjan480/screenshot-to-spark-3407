@@ -1,56 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { Gem, HeartHandshake, MapPin, Navigation, Phone, Sparkles, User, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-necklace.jpg";
 import showroomImage from "@/assets/showroom.jpg";
 import { BUSINESS, defaultEnquiry, mapsHref, telHref, whatsappHref } from "@/lib/business";
 import { SectionHeading } from "./SectionHeading";
 import { ContactForm } from "./ContactForm";
 import { WhatsAppIcon } from "./icons";
 
-export function HomeHero() {
-  return (
-    <section className="relative isolate flex min-h-[calc(100svh-6.75rem)] items-end overflow-hidden bg-burgundy-deep md:min-h-[640px] md:items-center lg:min-h-[720px]">
-      <img
-        src={heroImage}
-        alt="Ornate gold temple necklace and jhumka earrings displayed on burgundy velvet"
-        width={1920}
-        height={1088}
-        fetchPriority="high"
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-[68%_center] md:object-center"
-      />
-      <div className="bg-hero-overlay absolute inset-0 -z-10" />
-      <div className="container-lux pb-14 pt-24 md:py-24">
-        <div className="max-w-xl">
-          <p className="eyebrow animate-fade-up text-gold-soft">PATRA JEWELLERS · Jajpur, Odisha</p>
-          <h1
-            className="mt-5 animate-fade-up text-balance text-[2.6rem] leading-[1.02] text-on-dark sm:text-6xl lg:text-7xl"
-            style={{ animationDelay: "120ms" }}
-          >
-            Where Tradition Meets <em className="text-gold-gradient not-italic">Timeless Elegance</em>
-          </h1>
-          <p
-            className="mt-6 max-w-md animate-fade-up text-base leading-relaxed text-on-dark-muted sm:text-lg"
-            style={{ animationDelay: "240ms" }}
-          >
-            Discover exquisite jewellery crafted to celebrate your most precious moments.
-          </p>
-          <div
-            className="mt-9 flex animate-fade-up flex-col gap-3 sm:flex-row"
-            style={{ animationDelay: "360ms" }}
-          >
-            <Button variant="gold" size="xl" asChild>
-              <Link to="/collections">Explore Collections</Link>
-            </Button>
-            <Button variant="outline-light" size="xl" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+export { HomeHero } from "./HomeShowcase";
 
 export function AboutSection({ withLink = true }: { withLink?: boolean }) {
   return (
