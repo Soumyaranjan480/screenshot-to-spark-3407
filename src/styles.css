@@ -10,7 +10,7 @@
 
 /*
  * PATRA JEWELLERS design system.
- * Champagne gold, warm ivory, cream, deep charcoal, dark burgundy.
+ * Blush, dusty rose, cocoa brown and rose gold.
  * Headings: Cormorant Garamond. Body: Jost.
  */
 
@@ -76,68 +76,69 @@
 :root {
   --radius: 0.25rem;
 
-  /* Brand palette */
-  --gold: oklch(0.728 0.099 82.1); /* #C6A15B */
-  --gold-deep: oklch(0.6 0.095 78);
-  --gold-soft: oklch(0.86 0.06 84);
-  --ivory: oklch(0.977 0.01 87.5); /* #FAF7F0 */
-  --cream: oklch(0.937 0.019 80.1); /* #F1E9DC */
-  --charcoal: oklch(0.257 0.008 84.6); /* #25231F */
-  --burgundy: oklch(0.352 0.101 13.8); /* #651F2B */
-  --burgundy-deep: oklch(0.26 0.075 14);
-  --on-dark: oklch(0.977 0.01 87.5);
-  --on-dark-muted: oklch(0.85 0.025 84);
+  /* Brand palette (blush, dusty rose, cocoa, rose gold).
+     Token names are kept from the original palette so every component follows. */
+  --gold: oklch(0.682 0.076 48.9); /* rose gold #C08B6F */
+  --gold-deep: oklch(0.541 0.074 39.9); /* #94604E */
+  --gold-soft: oklch(0.862 0.039 50.7); /* #E8CBBB */
+  --ivory: oklch(0.955 0.011 45.7); /* blush #F7EEEA */
+  --cream: oklch(0.909 0.022 47); /* #EEDDD5 */
+  --charcoal: oklch(0.262 0.022 37.8); /* cocoa ink #2E211D */
+  --burgundy: oklch(0.564 0.095 28.9); /* dusty rose #A65F55 */
+  --burgundy-deep: oklch(0.328 0.047 35.7); /* cocoa #4A2C24 */
+  --on-dark: oklch(0.975 0.008 50);
+  --on-dark-muted: oklch(0.87 0.025 48);
   --whatsapp: oklch(0.52 0.12 155);
   --whatsapp-foreground: oklch(0.99 0 0);
 
   /* Semantic */
   --background: var(--ivory);
   --foreground: var(--charcoal);
-  --card: oklch(0.99 0.006 87);
+  --card: oklch(0.979 0.007 53.4);
   --card-foreground: var(--charcoal);
   --popover: var(--ivory);
   --popover-foreground: var(--charcoal);
   --primary: var(--burgundy);
-  --primary-foreground: var(--ivory);
+  --primary-foreground: var(--on-dark);
   --secondary: var(--cream);
   --secondary-foreground: var(--charcoal);
   --muted: var(--cream);
-  --muted-foreground: oklch(0.47 0.015 80);
+  --muted-foreground: oklch(0.48 0.03 40);
   --accent: var(--gold);
   --accent-foreground: var(--charcoal);
   --destructive: oklch(0.55 0.2 27);
   --destructive-foreground: var(--ivory);
-  --border: oklch(0.88 0.03 82);
-  --input: oklch(0.86 0.03 82);
+  --border: oklch(0.868 0.026 48.4);
+  --input: oklch(0.84 0.03 46);
   --ring: var(--gold);
 
   --gradient-gold: linear-gradient(
     120deg,
-    oklch(0.62 0.095 76) 0%,
-    oklch(0.8 0.09 86) 45%,
-    oklch(0.66 0.1 78) 100%
+    oklch(0.6 0.08 40) 0%,
+    oklch(0.84 0.06 52) 45%,
+    oklch(0.66 0.08 44) 100%
   );
   --gradient-hero: linear-gradient(
     90deg,
-    oklch(0.18 0.05 14 / 0.92) 0%,
-    oklch(0.2 0.05 14 / 0.65) 45%,
-    oklch(0.2 0.05 14 / 0) 80%
+    oklch(0.22 0.035 36 / 0.92) 0%,
+    oklch(0.24 0.035 36 / 0.62) 45%,
+    oklch(0.24 0.035 36 / 0) 80%
   );
   --gradient-hero-mobile: linear-gradient(
     0deg,
-    oklch(0.16 0.05 14 / 0.95) 0%,
-    oklch(0.18 0.05 14 / 0.6) 55%,
-    oklch(0.18 0.05 14 / 0.15) 100%
+    oklch(0.2 0.035 36 / 0.95) 0%,
+    oklch(0.22 0.035 36 / 0.6) 55%,
+    oklch(0.22 0.035 36 / 0.15) 100%
   );
   --gradient-card: linear-gradient(
     0deg,
-    oklch(0.16 0.04 14 / 0.92) 0%,
-    oklch(0.18 0.04 14 / 0.45) 38%,
-    oklch(0.18 0.04 14 / 0.05) 62%,
-    oklch(0.18 0.04 14 / 0) 100%
+    oklch(0.2 0.03 36 / 0.92) 0%,
+    oklch(0.22 0.03 36 / 0.45) 38%,
+    oklch(0.22 0.03 36 / 0.05) 62%,
+    oklch(0.22 0.03 36 / 0) 100%
   );
-  --shadow-soft: 0 1px 2px oklch(0.25 0.02 60 / 0.06), 0 8px 24px -12px oklch(0.25 0.02 60 / 0.18);
-  --shadow-lift: 0 2px 4px oklch(0.25 0.02 60 / 0.06), 0 24px 48px -20px oklch(0.3 0.06 30 / 0.35);
+  --shadow-soft: 0 1px 2px oklch(0.25 0.03 40 / 0.06), 0 8px 24px -12px oklch(0.25 0.03 40 / 0.18);
+  --shadow-lift: 0 2px 4px oklch(0.25 0.03 40 / 0.06), 0 24px 48px -20px oklch(0.3 0.05 35 / 0.35);
 }
 
 @layer base {
@@ -259,4 +260,44 @@
 
 @utility animate-fade-up {
   animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Home showcase: slow cross-fade zoom on the active slide and an endless jewellery ribbon. */
+@keyframes slow-zoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@utility animate-slow-zoom {
+  animation: slow-zoom 7s ease-out both;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 45s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
+  &:focus-within {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-slow-zoom {
+    animation: none;
+  }
 }
