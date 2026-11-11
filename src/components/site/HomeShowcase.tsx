@@ -119,7 +119,7 @@ export function HomeHero() {
       <div className="absolute inset-x-0 bottom-5 md:bottom-8">
         <div className="container-lux flex items-center justify-between gap-4">
           <p aria-live="polite" className="eyebrow truncate text-gold-soft">
-            <span className="text-on-dark">0{active + 1}</span> / 0{SLIDES.length} · {SLIDES[active].label}
+            <span className="text-on-dark">0{active + 1}</span> / 0{SLIDES.length} · {SLIDES[active]?.label}
           </p>
           <div className="flex shrink-0 items-center gap-2">
             <button
