@@ -4,6 +4,7 @@ import { CATEGORIES, featuredProducts } from "@/lib/catalog";
 import { CategoryGrid } from "@/components/site/CategoryCard";
 import { ProductGrid } from "@/components/site/ProductCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { JewelleryRibbon } from "@/components/site/HomeShowcase";
 import { AboutSection, ContactSection, HomeHero, WhyChooseUs } from "@/components/site/sections";
 
 export const Route = createFileRoute("/")({
@@ -32,6 +33,7 @@ function Index() {
   return (
     <>
       <HomeHero />
+      <JewelleryRibbon />
 
       <section className="py-20 md:py-28">
         <div className="container-lux">
