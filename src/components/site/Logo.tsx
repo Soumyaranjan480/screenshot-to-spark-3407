@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/patra-logo.png.asset.json";
 
 type Props = { tone?: "dark" | "light"; className?: string };
 
@@ -12,10 +13,12 @@ export function Logo({ tone = "dark", className }: Props) {
     >
       <span
         aria-hidden="true"
-        className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full border border-gold"
+        className={cn(
+          "grid h-12 w-14 shrink-0 place-items-center",
+          tone === "light" && "rounded-md bg-background/95 p-1",
+        )}
       >
-        <span className="font-display text-xl leading-none text-gold-gradient">P</span>
-        <span className="absolute inset-1 rounded-full border border-gold/40" />
+        <img src={logoAsset.url} alt="" className="h-full w-full object-contain" />
       </span>
       <span className="flex flex-col leading-none">
         <span
