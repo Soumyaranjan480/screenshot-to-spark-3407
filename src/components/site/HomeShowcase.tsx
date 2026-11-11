@@ -11,16 +11,16 @@ import heroNecklace from "@/assets/hero-necklace.jpg";
 
 const SLIDES = [
   {
-    image: heroModel,
-    alt: "Woman in a burgundy silk saree wearing a gold temple necklace, jhumkas, maang tikka and bangles",
-    label: "Bridal Temple Jewellery",
-    position: "object-[72%_center]",
-  },
-  {
     image: heroEarrings,
     alt: "Woman in profile wearing gold chandbali earrings with pearl drops and a layered gold necklace",
     label: "Chandbalis & Pearl Necklaces",
     position: "object-[70%_center]",
+  },
+  {
+    image: heroModel,
+    alt: "Woman in a burgundy silk saree wearing a gold temple necklace, jhumkas, maang tikka and bangles",
+    label: "Bridal Temple Jewellery",
+    position: "object-[72%_center]",
   },
   {
     image: heroBangles,
@@ -36,7 +36,7 @@ const SLIDES = [
   },
 ];
 
-const INTERVAL_MS = 5500;
+const INTERVAL_MS = 5000;
 
 export function HomeHero() {
   const [active, setActive] = useState(0);
