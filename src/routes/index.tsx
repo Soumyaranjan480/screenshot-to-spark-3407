@@ -5,6 +5,7 @@ import { CategoryGrid } from "@/components/site/CategoryCard";
 import { ProductGrid } from "@/components/site/ProductCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { JewelleryRibbon } from "@/components/site/HomeShowcase";
+import { TodayRates } from "@/components/site/TodayRates";
 import { AboutSection, ContactSection, HomeHero, WhyChooseUs } from "@/components/site/sections";
 
 export const Route = createFileRoute("/")({
@@ -34,6 +35,7 @@ function Index() {
     <>
       <HomeHero />
       <JewelleryRibbon />
+      <TodayRates />
 
       <section className="py-20 md:py-28">
         <div className="container-lux">
