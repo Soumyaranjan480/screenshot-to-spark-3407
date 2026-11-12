@@ -33,9 +33,9 @@ function AuthPage() {
     const form = new FormData(e.currentTarget);
     const email = String(form.get("email") ?? "").trim();
     const password = String(form.get("password") ?? "");
-    if (!email) return toast.error("Please enter your email");
+    if (!email) { toast.error("Please enter your email"); return; }
     if (mode !== "forgot" && password.length < 8)
-      return toast.error("Password must be at least 8 characters");
+      { toast.error("Password must be at least 8 characters"); return; }
 
     setBusy(true);
     setNotice(null);

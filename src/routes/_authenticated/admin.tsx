@@ -93,17 +93,17 @@ function RatesEditor() {
     const changes: { row: MetalRate; rate: number | null }[] = [];
     for (const row of data) {
       const parsed = parseRateInput(values[row.id] ?? "");
-      if (parsed === undefined) return toast.error(`${row.label}: please enter a number like 72500`);
+      if (parsed === undefined) { toast.error(`${row.label}: please enter a number like 72500`); return; }
       if (parsed !== row.rate) changes.push({ row, rate: parsed });
     }
-    if (changes.length === 0) return toast("Nothing changed");
+    if (changes.length === 0) { toast("Nothing changed"); return; }
 
     setSaving(true);
     for (const { row, rate } of changes) {
       const { error } = await supabase.from("metal_rates").update({ rate }).eq("id", row.id);
       if (error) {
         setSaving(false);
-        return toast.error(`Couldn't save ${row.label}. Please try again.`);
+        { toast.error(`Couldn't save ${row.label}. Please try again.`); return; }
       }
     }
     setSaving(false);
