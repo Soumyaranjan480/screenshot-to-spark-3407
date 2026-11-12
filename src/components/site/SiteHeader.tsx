@@ -19,7 +19,7 @@ export function SiteHeader() {
         <div className="container-lux flex h-9 items-center justify-center gap-6 text-[0.7rem] tracking-[0.16em] uppercase md:justify-between">
           <span className="hidden items-center gap-2 md:inline-flex">
             <MapPin className="h-3.5 w-3.5 text-gold" aria-hidden="true" />
-            Mangalpur, Jajpur, Odisha
+            Mangalpur
           </span>
           <a href={telHref} className="inline-flex items-center gap-2 hover:text-on-dark">
             <Phone className="h-3.5 w-3.5 text-gold" aria-hidden="true" />

@@ -9,7 +9,7 @@ describe("PATRA JEWELLERS contact details", () => {
   });
 
   it("shows the owner and address from the brief", () => {
-    expect(BUSINESS.owner).toBe("BIJAY KUMAR PATRA");
+    expect(BUSINESS.owner).toBe("VIJAY KUMAR PATRA");
     expect(BUSINESS.addressFull).toContain("Mangalpur, Jajpur, Odisha");
     expect(BUSINESS.addressFull).toContain("755011");
   });
