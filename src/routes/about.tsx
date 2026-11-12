@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "PATRA JEWELLERS, led by Bijay Kumar Patra, brings beautiful jewellery and personal customer service to Mangalpur, Jajpur, Odisha.",
+          "PATRA JEWELLERS, led by Vijay Kumar Patra, brings beautiful jewellery and personal customer service to Mangalpur, Jajpur, Odisha.",
       },
       { property: "og:title", content: "About PATRA JEWELLERS" },
       {

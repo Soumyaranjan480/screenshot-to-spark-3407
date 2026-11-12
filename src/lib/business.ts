@@ -1,7 +1,7 @@
 // Single source of truth for PATRA JEWELLERS business details.
 export const BUSINESS = {
   name: "PATRA JEWELLERS",
-  owner: "BIJAY KUMAR PATRA",
+  owner: "VIJAY KUMAR PATRA",
   addressLines: ["Mangalpur, Jajpur", "Odisha, India – 755011"],
   addressFull: "Mangalpur, Jajpur, Odisha, India – 755011",
   phoneDisplay: "+91 98535 27161",
