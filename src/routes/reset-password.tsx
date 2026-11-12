@@ -33,7 +33,7 @@ function ResetPasswordPage() {
     setBusy(false);
     if (error) { toast.error(error.message); return; }
     toast.success("Password updated");
-    navigate({ to: "/admin" });
+    navigate({ to: "/patra-owner-rates" });
   }
 
   return (

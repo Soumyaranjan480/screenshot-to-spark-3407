@@ -12,12 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GoldJewelleryRouteImport } from './routes/gold-jewellery'
+import { Route as PatraOwnerLoginRouteImport } from './routes/patra-owner-login'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SilverJewelleryRouteImport } from './routes/silver-jewellery'
-import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedPatraOwnerRatesRouteImport } from './routes/_authenticated/patra-owner-rates'
 import { Route as CollectionsIndexRouteImport } from './routes/collections.index'
 import { Route as CollectionsCategoryRouteImport } from './routes/collections.$category'
 import { Route as ProductsCodeRouteImport } from './routes/products.$code'
@@ -36,11 +36,6 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -49,6 +44,11 @@ const ContactRoute = ContactRouteImport.update({
 const GoldJewelleryRoute = GoldJewelleryRouteImport.update({
   id: '/gold-jewellery',
   path: '/gold-jewellery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatraOwnerLoginRoute = PatraOwnerLoginRouteImport.update({
+  id: '/patra-owner-login',
+  path: '/patra-owner-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -61,11 +61,12 @@ const SilverJewelleryRoute = SilverJewelleryRouteImport.update({
   path: '/silver-jewellery',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedPatraOwnerRatesRoute =
+  AuthenticatedPatraOwnerRatesRouteImport.update({
+    id: '/patra-owner-rates',
+    path: '/patra-owner-rates',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const CollectionsIndexRoute = CollectionsIndexRouteImport.update({
   id: '/collections/',
   path: '/collections/',
@@ -85,12 +86,12 @@ const ProductsCodeRoute = ProductsCodeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/gold-jewellery': typeof GoldJewelleryRoute
+  '/patra-owner-login': typeof PatraOwnerLoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
-  '/admin': typeof AuthenticatedAdminRoute
+  '/patra-owner-rates': typeof AuthenticatedPatraOwnerRatesRoute
   '/collections/$category': typeof CollectionsCategoryRoute
   '/products/$code': typeof ProductsCodeRoute
   '/collections/': typeof CollectionsIndexRoute
@@ -98,12 +99,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/gold-jewellery': typeof GoldJewelleryRoute
+  '/patra-owner-login': typeof PatraOwnerLoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
-  '/admin': typeof AuthenticatedAdminRoute
+  '/patra-owner-rates': typeof AuthenticatedPatraOwnerRatesRoute
   '/collections/$category': typeof CollectionsCategoryRoute
   '/products/$code': typeof ProductsCodeRoute
   '/collections': typeof CollectionsIndexRoute
@@ -113,12 +114,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/gold-jewellery': typeof GoldJewelleryRoute
+  '/patra-owner-login': typeof PatraOwnerLoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/patra-owner-rates': typeof AuthenticatedPatraOwnerRatesRoute
   '/collections/$category': typeof CollectionsCategoryRoute
   '/products/$code': typeof ProductsCodeRoute
   '/collections/': typeof CollectionsIndexRoute
@@ -128,12 +129,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/auth'
     | '/contact'
     | '/gold-jewellery'
+    | '/patra-owner-login'
     | '/reset-password'
     | '/silver-jewellery'
-    | '/admin'
+    | '/patra-owner-rates'
     | '/collections/$category'
     | '/products/$code'
     | '/collections/'
@@ -141,12 +142,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/auth'
     | '/contact'
     | '/gold-jewellery'
+    | '/patra-owner-login'
     | '/reset-password'
     | '/silver-jewellery'
-    | '/admin'
+    | '/patra-owner-rates'
     | '/collections/$category'
     | '/products/$code'
     | '/collections'
@@ -155,12 +156,12 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/about'
-    | '/auth'
     | '/contact'
     | '/gold-jewellery'
+    | '/patra-owner-login'
     | '/reset-password'
     | '/silver-jewellery'
-    | '/_authenticated/admin'
+    | '/_authenticated/patra-owner-rates'
     | '/collections/$category'
     | '/products/$code'
     | '/collections/'
@@ -170,9 +171,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
-  AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   GoldJewelleryRoute: typeof GoldJewelleryRoute
+  PatraOwnerLoginRoute: typeof PatraOwnerLoginRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SilverJewelleryRoute: typeof SilverJewelleryRoute
   CollectionsCategoryRoute: typeof CollectionsCategoryRoute
@@ -203,13 +204,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -222,6 +216,13 @@ declare module '@tanstack/react-router' {
       path: '/gold-jewellery'
       fullPath: '/gold-jewellery'
       preLoaderRoute: typeof GoldJewelleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patra-owner-login': {
+      id: '/patra-owner-login'
+      path: '/patra-owner-login'
+      fullPath: '/patra-owner-login'
+      preLoaderRoute: typeof PatraOwnerLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -238,11 +239,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SilverJewelleryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin': {
-      id: '/_authenticated/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+    '/_authenticated/patra-owner-rates': {
+      id: '/_authenticated/patra-owner-rates'
+      path: '/patra-owner-rates'
+      fullPath: '/patra-owner-rates'
+      preLoaderRoute: typeof AuthenticatedPatraOwnerRatesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/collections/': {
@@ -270,11 +271,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedPatraOwnerRatesRoute: typeof AuthenticatedPatraOwnerRatesRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedPatraOwnerRatesRoute: AuthenticatedPatraOwnerRatesRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -284,9 +285,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
-  AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   GoldJewelleryRoute: GoldJewelleryRoute,
+  PatraOwnerLoginRoute: PatraOwnerLoginRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SilverJewelleryRoute: SilverJewelleryRoute,
   CollectionsCategoryRoute: CollectionsCategoryRoute,

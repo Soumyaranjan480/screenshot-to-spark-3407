@@ -4,8 +4,9 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { fieldClass, labelClass } from "@/components/site/fields";
+import { OWNER_EMAIL } from "@/lib/rates";
 
-export const Route = createFileRoute("/auth")({
+export const Route = createFileRoute("/patra-owner-login")({
   head: () => ({
     meta: [
       { title: "Owner Sign In – PATRA JEWELLERS" },
@@ -37,21 +38,26 @@ function AuthPage() {
     if (mode !== "forgot" && password.length < 8)
       { toast.error("Password must be at least 8 characters"); return; }
 
+    if (mode === "signup" && email.toLowerCase() !== OWNER_EMAIL) {
+      toast.error("Only the shop owner's email can create an account here.");
+      return;
+    }
+
     setBusy(true);
     setNotice(null);
     try {
       if (mode === "signin") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate({ to: "/admin" });
+        navigate({ to: "/patra-owner-rates" });
       } else if (mode === "signup") {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/admin` },
+          options: { emailRedirectTo: `${window.location.origin}/patra-owner-rates` },
         });
         if (error) throw error;
-        if (data.session) navigate({ to: "/admin" });
+        if (data.session) navigate({ to: "/patra-owner-rates" });
         else setNotice("Check your email and tap the confirmation link, then sign in here.");
       } else {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {

@@ -15,7 +15,7 @@ import {
   type MetalRate,
 } from "@/lib/rates";
 
-export const Route = createFileRoute("/_authenticated/admin")({
+export const Route = createFileRoute("/_authenticated/patra-owner-rates")({
   head: () => ({
     meta: [
       { title: "Update Today's Rates – PATRA JEWELLERS" },
