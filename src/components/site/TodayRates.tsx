@@ -57,12 +57,12 @@ export function TodayRates() {
         )}
 
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <Button variant="burgundy" size="lg" asChild>
+          <Button variant="burgundy" size="xl" asChild>
             <a href={telHref}>
               <Phone /> Call for Today's Rate
             </a>
           </Button>
-          <Button variant="whatsapp" size="lg" asChild>
+          <Button variant="whatsapp" size="xl" asChild>
             <a
               href={whatsappHref("Hello PATRA JEWELLERS, please share today's gold and silver rate.")}
               target="_blank"
