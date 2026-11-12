@@ -35,3 +35,5 @@ use the editor.
 - Site-wide chrome (header, footer, floating WhatsApp, toaster) is mounted in `src/routes/__root.tsx`; pages render only their own sections.
 - The contact form hands off to WhatsApp with a prefilled message instead of storing submissions, so no enquiry data is kept on a server.
 - Home page showcase (auto-sliding hero + moving jewellery strip) lives in `src/components/site/HomeShowcase.tsx`; its motion respects reduced-motion and pauses on hover/focus so it stays accessible.
+- Daily gold/silver rates live in the `metal_rates` table (public read, update only for `admin` role via `has_role`); the site reads it from the browser client so it works on any host. The owner gets `admin` automatically by email via an `auth.users` trigger.
+- Owner rate editing is at `/admin` under the `_authenticated` gate; sign-in is email/password at `/auth` (no Google/Lovable OAuth because the site is also deployed outside Lovable hosting, where those redirects don't work).
