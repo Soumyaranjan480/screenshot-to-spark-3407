@@ -39,16 +39,24 @@ export function CategoryCard({ category }: { category: Category }) {
 export function CategoryGrid({
   categories,
   columns = 5,
+  swipeOnMobile = false,
 }: {
   categories: Category[];
   columns?: 3 | 5;
+  /** On phones, show one swipeable row instead of a long grid. */
+  swipeOnMobile?: boolean;
 }) {
+  const cols = columns === 3 ? "md:grid-cols-3" : "lg:grid-cols-5";
   return (
     <ul
-      className={`grid grid-cols-2 gap-3 sm:gap-5 ${columns === 3 ? "md:grid-cols-3" : "lg:grid-cols-5"}`}
+      className={
+        swipeOnMobile
+          ? `scrollbar-none -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 ${cols}`
+          : `grid grid-cols-2 gap-3 sm:gap-5 ${cols}`
+      }
     >
       {categories.map((c) => (
-        <li key={c.slug}>
+        <li key={c.slug} className={swipeOnMobile ? "w-[42%] shrink-0 snap-start sm:w-auto" : undefined}>
           <CategoryCard category={c} />
         </li>
       ))}

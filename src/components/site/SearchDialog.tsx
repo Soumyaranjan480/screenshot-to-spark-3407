@@ -85,7 +85,7 @@ export function SearchDialog({ open, onOpenChange }: Props) {
             <div className="p-2">
               <p className="eyebrow mb-2">Pieces</p>
               <ul className="space-y-1">
-                {results.products.map((p) => (
+                {results.products.slice(0, 30).map((p) => (
                   <li key={p.code}>
                     <Link
                       to="/products/$code"
