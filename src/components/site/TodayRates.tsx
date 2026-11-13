@@ -14,7 +14,7 @@ export function TodayRates() {
   const anyRate = updated !== null;
 
   return (
-    <section aria-labelledby="rates-title" className="bg-cream py-16 md:py-20">
+    <section aria-labelledby="rates-title" className="bg-cream py-12 md:py-20">
       <div className="container-lux">
         <SectionHeading
           eyebrow="Today's Rate"
@@ -26,7 +26,7 @@ export function TodayRates() {
           }
         />
 
-        <ul className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        <ul className="mx-auto mt-8 grid md:mt-10 max-w-5xl grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {isPending
             ? Array.from({ length: 4 }).map((_, i) => (
                 <li key={i} className="rounded-sm border border-border bg-card p-5 sm:p-6">

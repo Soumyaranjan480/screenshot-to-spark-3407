@@ -37,30 +37,30 @@ function Index() {
       <JewelleryRibbon />
       <TodayRates />
 
-      <section className="py-20 md:py-28">
+      <section className="py-14 md:py-28">
         <div className="container-lux">
           <SectionHeading
             eyebrow="Shop by Category"
             title="Discover Our Jewellery"
             description="From bridal gold to delicate silver, explore collections for every occasion."
           />
-          <div className="mt-14">
-            <CategoryGrid categories={CATEGORIES} />
+          <div className="mt-8 md:mt-14">
+            <CategoryGrid categories={CATEGORIES} swipeOnMobile />
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border bg-card py-20 md:py-28">
+      <section className="border-t border-border bg-card py-14 md:py-28">
         <div className="container-lux">
           <SectionHeading
             eyebrow="Featured Collections"
             title="Pieces We Love"
             description="Ask us on WhatsApp for current availability and pricing of any piece."
           />
-          <div className="mt-14">
+          <div className="mt-8 md:mt-14">
             <ProductGrid products={featuredProducts().slice(0, 8)} />
           </div>
-          <div className="mt-12 flex justify-center">
+          <div className="mt-10 flex justify-center md:mt-12">
             <Button variant="burgundy" size="xl" asChild>
               <Link to="/collections">View All Collections</Link>
             </Button>

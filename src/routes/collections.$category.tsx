@@ -60,19 +60,19 @@ function CategoryPage() {
         description={category.blurb}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-24">
         <div className="container-lux">
           <div className="flex flex-col items-start justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-end">
             <div>
-              <p className="eyebrow">{products.length} {products.length === 1 ? "piece" : "pieces"}</p>
-              <h2 className="mt-2 text-3xl sm:text-4xl">Browse {category.name}</h2>
+              <p className="eyebrow">{products.length} {products.length === 1 ? "design" : "designs"}</p>
+              <h2 className="mt-2 text-3xl sm:text-4xl">All {category.name} Designs</h2>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground">
               Many more designs are available at our showroom. Ask us on WhatsApp for pricing and
               availability.
             </p>
           </div>
-          <div className="mt-10">
+          <div className="mt-8 md:mt-10">
             <ProductGrid products={products} />
           </div>
           <div className="mt-12 flex justify-center">
@@ -89,10 +89,10 @@ function CategoryPage() {
         </div>
       </section>
 
-      <section className="border-t border-border bg-cream py-16 md:py-24">
+      <section className="border-t border-border bg-cream py-12 md:py-24">
         <div className="container-lux">
           <SectionHeading eyebrow="Keep Exploring" title="You May Also Like" />
-          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          <ul className="mt-8 grid grid-cols-2 md:mt-12 gap-3 sm:gap-5 lg:grid-cols-4">
             {related.map((c) => (
               <li key={c.slug}>
                 <CategoryCard category={c} />

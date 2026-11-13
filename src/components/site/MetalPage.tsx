@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { categoriesByMetal, productsByMetal, type Metal } from "@/lib/catalog";
+import { categoriesByMetal, highlights, type Metal } from "@/lib/catalog";
 import { defaultEnquiry, whatsappHref } from "@/lib/business";
 import { CategoryGrid } from "./CategoryCard";
 import { PageBanner } from "./PageBanner";
@@ -17,7 +17,7 @@ type Props = {
 
 export function MetalPage({ metal, title, description, image }: Props) {
   const categories = categoriesByMetal(metal);
-  const products = productsByMetal(metal);
+  const products = highlights(2, metal);
 
   return (
     <>
@@ -41,9 +41,9 @@ export function MetalPage({ metal, title, description, image }: Props) {
       <section className="border-t border-border bg-card py-16 md:py-24">
         <div className="container-lux">
           <SectionHeading
-            eyebrow="All Pieces"
+            eyebrow="Highlights"
             title={`${title} Showcase`}
-            description="Contact us for current pricing, weight details and availability."
+            description="A few favourites from each type. Tap a category above to see all its designs."
           />
           <div className="mt-12">
             <ProductGrid products={products} />
