@@ -3,9 +3,9 @@ import { BUSINESS, productEnquiry, telHref, whatsappHref } from "@/lib/business"
 import { CATEGORIES, PRODUCTS, getCategory, searchCatalog } from "@/lib/catalog";
 
 describe("PATRA JEWELLERS contact details", () => {
-  it("calls and messages +91 9853527161", () => {
-    expect(telHref).toBe("tel:+919853527161");
-    expect(whatsappHref()).toBe("https://wa.me/919853527161");
+  it("calls and messages +91 9938288284", () => {
+    expect(telHref).toBe("tel:+919938288284");
+    expect(whatsappHref()).toBe("https://wa.me/919938288284");
   });
 
   it("shows the owner and address from the brief", () => {

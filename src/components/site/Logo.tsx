@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import logoAsset from "@/assets/patra-logo.png.asset.json";
+import logoImg from "@/assets/patra-logo.png";
 
 type Props = { tone?: "dark" | "light"; className?: string };
 
@@ -18,7 +18,7 @@ export function Logo({ tone = "dark", className }: Props) {
           tone === "light" && "rounded-md bg-background/95 p-1",
         )}
       >
-        <img src={logoAsset.url} alt="" className="h-full w-full object-contain" />
+        <img src={logoImg} alt="" className="h-full w-full object-contain" />
       </span>
       <span className="flex flex-col leading-none">
         <span
