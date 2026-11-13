@@ -10,12 +10,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Visit PATRA JEWELLERS at Mangalpur, Jajpur, Odisha – 755011. Call or WhatsApp +91 9853527161.",
+          "Visit PATRA JEWELLERS at Mangalpur, Jajpur, Odisha – 755011. Call or WhatsApp +91 9938288284.",
       },
       { property: "og:title", content: "Contact PATRA JEWELLERS" },
       {
         property: "og:description",
-        content: "Mangalpur, Jajpur, Odisha – 755011 · +91 9853527161",
+        content: "Mangalpur, Jajpur, Odisha – 755011 · +91 9938288284",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

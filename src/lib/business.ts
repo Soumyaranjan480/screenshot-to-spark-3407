@@ -4,9 +4,9 @@ export const BUSINESS = {
   owner: "VIJAY KUMAR PATRA",
   addressLines: ["Mangalpur, Jajpur", "Odisha, India – 755011"],
   addressFull: "Mangalpur, Jajpur, Odisha, India – 755011",
-  phoneDisplay: "+91 98535 27161",
-  phoneE164: "+919853527161",
-  whatsappNumber: "919853527161",
+  phoneDisplay: "+91 99382 88284",
+  phoneE164: "+919938288284",
+  whatsappNumber: "919938288284",
 } as const;
 
 export const telHref = `tel:${BUSINESS.phoneE164}`;
