@@ -16,6 +16,7 @@ import anklet1 from "@/assets/p-anklet-1.jpg";
 import silverRing1 from "@/assets/p-silver-ring-1.jpg";
 import traditional1 from "@/assets/p-traditional-1.jpg";
 import traditional2 from "@/assets/p-traditional-2.jpg";
+import { DESIGN_PRODUCTS } from "./designs";
 
 export type Metal = "gold" | "silver" | "traditional";
 
@@ -109,7 +110,7 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const PRODUCTS: Product[] = [
+const SHOWROOM_PRODUCTS: Product[] = [
   {
     code: "PJ-GN-101",
     name: "Kundan Rani Haar Set",
@@ -259,6 +260,9 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
+/** Every piece: the original showroom pieces first, then the extra designs for each type. */
+export const PRODUCTS: Product[] = [...SHOWROOM_PRODUCTS, ...DESIGN_PRODUCTS];
+
 export const METAL_LABEL: Record<Metal, string> = {
   gold: "Gold",
   silver: "Silver",
@@ -284,6 +288,12 @@ export function categoriesByMetal(metal: Metal) {
 export function productsByMetal(metal: Metal) {
   const slugs = new Set(categoriesByMetal(metal).map((c) => c.slug));
   return PRODUCTS.filter((p) => slugs.has(p.categorySlug));
+}
+
+/** A few pieces from each type, for previews such as the moving strip and metal pages. */
+export function highlights(perCategory = 2, metal?: Metal) {
+  const cats = metal ? categoriesByMetal(metal) : CATEGORIES;
+  return cats.flatMap((c) => productsInCategory(c.slug).slice(0, perCategory));
 }
 
 export function featuredProducts() {
