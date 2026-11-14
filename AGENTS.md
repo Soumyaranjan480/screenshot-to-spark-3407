@@ -36,4 +36,5 @@ use the editor.
 - The contact form hands off to WhatsApp with a prefilled message instead of storing submissions, so no enquiry data is kept on a server.
 - Home page showcase (auto-sliding hero + moving jewellery strip) lives in `src/components/site/HomeShowcase.tsx`; its motion respects reduced-motion and pauses on hover/focus so it stays accessible.
 - Daily gold/silver rates live in the `metal_rates` table (public read, update only for `admin` role via `has_role`); the site reads it from the browser client so it works on any host. The owner gets `admin` automatically by email via an `auth.users` trigger.
+- Public rates and the owner editor share the filtering in `src/lib/rates.ts`; change stored units together with their amounts so existing rates never acquire a misleading basis.
 - Owner rate editing is at the unlinked `/patra-owner-rates` page under the `_authenticated` gate; sign-in is email/password at the unlinked `/patra-owner-login` (kept off nav, footer and search engines so customers never see it) (no Google/Lovable OAuth because the site is also deployed outside Lovable hosting, where those redirects don't work).
