@@ -35,6 +35,8 @@ export type Product = {
   image: string;
   description: string;
   featured?: boolean;
+  /** True for designs the owner uploaded from his private page. */
+  uploaded?: boolean;
 };
 
 export const CATEGORIES: Category[] = [
@@ -269,45 +271,49 @@ export const METAL_LABEL: Record<Metal, string> = {
   traditional: "Traditional",
 };
 
+// Every list helper accepts the product list so the live catalog (built-in pieces
+// plus the owner's uploads, minus pieces he removed) can reuse the same rules.
+
 export function getCategory(slug: string) {
   return CATEGORIES.find((c) => c.slug === slug);
 }
 
-export function getProduct(code: string) {
-  return PRODUCTS.find((p) => p.code.toLowerCase() === code.toLowerCase());
+export function getProduct(code: string, list: Product[] = PRODUCTS) {
+  return list.find((p) => p.code.toLowerCase() === code.toLowerCase());
 }
 
-export function productsInCategory(slug: string) {
-  return PRODUCTS.filter((p) => p.categorySlug === slug);
+export function productsInCategory(slug: string, list: Product[] = PRODUCTS) {
+  return list.filter((p) => p.categorySlug === slug);
 }
 
 export function categoriesByMetal(metal: Metal) {
   return CATEGORIES.filter((c) => c.metal === metal);
 }
 
-export function productsByMetal(metal: Metal) {
+export function productsByMetal(metal: Metal, list: Product[] = PRODUCTS) {
   const slugs = new Set(categoriesByMetal(metal).map((c) => c.slug));
-  return PRODUCTS.filter((p) => slugs.has(p.categorySlug));
+  return list.filter((p) => slugs.has(p.categorySlug));
 }
 
 /** A few pieces from each type, for previews such as the moving strip and metal pages. */
-export function highlights(perCategory = 2, metal?: Metal) {
+export function highlights(perCategory = 2, metal?: Metal, list: Product[] = PRODUCTS) {
   const cats = metal ? categoriesByMetal(metal) : CATEGORIES;
-  return cats.flatMap((c) => productsInCategory(c.slug).slice(0, perCategory));
+  return cats.flatMap((c) => productsInCategory(c.slug, list).slice(0, perCategory));
 }
 
-export function featuredProducts() {
-  return PRODUCTS.filter((p) => p.featured);
+/** The owner's newest uploads first, then the hand-picked showroom favourites. */
+export function featuredProducts(list: Product[] = PRODUCTS) {
+  return [...list.filter((p) => p.uploaded), ...list.filter((p) => p.featured && !p.uploaded)];
 }
 
-export function searchCatalog(query: string) {
+export function searchCatalog(query: string, list: Product[] = PRODUCTS) {
   const q = query.trim().toLowerCase();
   if (!q) return { categories: [] as Category[], products: [] as Product[] };
   // Match from the start of a word so "ring" finds rings but not earrings.
   const pattern = new RegExp(`(^|[\\s-])${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "i");
   const matches = (text: string) => pattern.test(text);
   const categories = CATEGORIES.filter((c) => matches(c.name));
-  const products = PRODUCTS.filter((p) => {
+  const products = list.filter((p) => {
     const cat = getCategory(p.categorySlug);
     return matches(p.name) || matches(p.code) || (cat ? matches(cat.name) : false);
   });
