@@ -3,12 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CATEGORIES, getCategory, searchCatalog } from "@/lib/catalog";
+import { useCatalogProducts } from "@/lib/live-catalog";
 
 type Props = { open: boolean; onOpenChange: (open: boolean) => void };
 
 export function SearchDialog({ open, onOpenChange }: Props) {
   const [query, setQuery] = useState("");
-  const results = useMemo(() => searchCatalog(query), [query]);
+  const { products } = useCatalogProducts();
+  const results = useMemo(() => searchCatalog(query, products), [query, products]);
   const close = () => {
     onOpenChange(false);
     setQuery("");

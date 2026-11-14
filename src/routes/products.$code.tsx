@@ -1,28 +1,34 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronRight, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getCategory, getProduct, productsInCategory, PRODUCTS } from "@/lib/catalog";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useCatalogProducts } from "@/lib/live-catalog";
+import { getCategory, getProduct, productsInCategory } from "@/lib/catalog";
 import { BUSINESS, mapsHref, productEnquiry, telHref, whatsappHref } from "@/lib/business";
 import { ProductGrid } from "@/components/site/ProductCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Ornament, WhatsAppIcon } from "@/components/site/icons";
 
 export const Route = createFileRoute("/products/$code")({
-  loader: ({ params }) => {
-    const product = getProduct(params.code);
-    if (!product) throw notFound();
-    const category = getCategory(product.categorySlug)!;
-    const sameCategory = productsInCategory(category.slug).filter((p) => p.code !== product.code);
-    const others = PRODUCTS.filter(
-      (p) => p.categorySlug !== category.slug && getCategory(p.categorySlug)?.metal === category.metal,
-    );
-    return { product, category, related: [...sameCategory, ...others].slice(0, 4) };
-  },
-  head: ({ loaderData }) => {
-    if (!loaderData) {
-      return { meta: [{ title: "Piece not found | PATRA JEWELLERS" }, { name: "robots", content: "noindex" }] };
+  // Built-in pieces are known up front; the owner's uploads load in the browser.
+  loader: ({ params }) => ({ product: getProduct(params.code) ?? null }),
+  head: ({ loaderData, params }) => {
+    const product = loaderData?.product;
+    const category = product ? getCategory(product.categorySlug) : undefined;
+    if (!product || !category) {
+      const title = `Design ${params.code.toUpperCase()} | PATRA JEWELLERS, Mangalpur`;
+      const description = "A jewellery design at PATRA JEWELLERS, Mangalpur. Enquire on WhatsApp for details.";
+      return {
+        meta: [
+          { title },
+          { name: "description", content: description },
+          { property: "og:title", content: title },
+          { property: "og:description", content: description },
+          { property: "og:type", content: "product" },
+          { name: "twitter:card", content: "summary_large_image" },
+        ],
+      };
     }
-    const { product, category } = loaderData;
     const title = `${product.name} (${product.code}) – ${category.name} | PATRA JEWELLERS`;
     return {
       meta: [
@@ -40,7 +46,21 @@ export const Route = createFileRoute("/products/$code")({
 });
 
 function ProductPage() {
-  const { product, category, related } = Route.useLoaderData();
+  const { code } = Route.useParams();
+  const { products, ready } = useCatalogProducts();
+  const product = getProduct(code, products);
+  const category = product ? getCategory(product.categorySlug) : undefined;
+
+  if (!product || !category) {
+    if (!ready) return <ProductSkeleton />;
+    return <ProductNotFound />;
+  }
+
+  const sameCategory = productsInCategory(category.slug, products).filter((p) => p.code !== product.code);
+  const others = products.filter(
+    (p) => p.categorySlug !== category.slug && getCategory(p.categorySlug)?.metal === category.metal,
+  );
+  const related = [...sameCategory, ...others].slice(0, 4);
   const parent =
     category.metal === "silver"
       ? ({ label: "Silver Jewellery", to: "/silver-jewellery" } as const)
@@ -145,6 +165,21 @@ function ProductPage() {
         </section>
       )}
     </>
+  );
+}
+
+function ProductSkeleton() {
+  return (
+    <section className="py-10 md:py-16">
+      <div className="container-lux grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <Skeleton className="aspect-[4/5] w-full" />
+        <div className="space-y-4 lg:py-6">
+          <Skeleton className="h-4 w-32" />
+          <Skeleton className="h-12 w-3/4" />
+          <Skeleton className="h-24 w-full" />
+        </div>
+      </div>
+    </section>
   );
 }
 

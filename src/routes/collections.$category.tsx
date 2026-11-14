@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { CATEGORIES, getCategory, productsInCategory } from "@/lib/catalog";
+import { useCatalogProducts } from "@/lib/live-catalog";
 import { defaultEnquiry, whatsappHref } from "@/lib/business";
 import { CategoryCard } from "@/components/site/CategoryCard";
 import { PageBanner } from "@/components/site/PageBanner";
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/collections/$category")({
   loader: ({ params }) => {
     const category = getCategory(params.category);
     if (!category) throw notFound();
-    return { category, products: productsInCategory(category.slug) };
+    return { category };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
@@ -37,7 +38,9 @@ export const Route = createFileRoute("/collections/$category")({
 });
 
 function CategoryPage() {
-  const { category, products } = Route.useLoaderData();
+  const { category } = Route.useLoaderData();
+  const { products: all } = useCatalogProducts();
+  const products = productsInCategory(category.slug, all);
   const others = CATEGORIES.filter((c) => c.slug !== category.slug && c.metal === category.metal).slice(0, 4);
   const fill = others.length < 4
     ? CATEGORIES.filter((c) => c.slug !== category.slug && c.metal !== category.metal).slice(0, 4 - others.length)

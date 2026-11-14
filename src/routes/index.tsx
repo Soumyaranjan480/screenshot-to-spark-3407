@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { CATEGORIES, featuredProducts } from "@/lib/catalog";
+import { useCatalogProducts } from "@/lib/live-catalog";
 import { CategoryGrid } from "@/components/site/CategoryCard";
 import { ProductGrid } from "@/components/site/ProductCard";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { products } = useCatalogProducts();
   return (
     <>
       <HomeHero />
@@ -58,7 +60,7 @@ function Index() {
             description="Ask us on WhatsApp for current availability and pricing of any piece."
           />
           <div className="mt-8 md:mt-14">
-            <ProductGrid products={featuredProducts().slice(0, 8)} />
+            <ProductGrid products={featuredProducts(products).slice(0, 8)} />
           </div>
           <div className="mt-10 flex justify-center md:mt-12">
             <Button variant="burgundy" size="xl" asChild>

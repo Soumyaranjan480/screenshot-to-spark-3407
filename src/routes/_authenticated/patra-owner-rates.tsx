@@ -1,12 +1,12 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
 import { fieldClass, labelClass } from "@/components/site/fields";
+import { OwnerShell } from "@/components/site/OwnerShell";
 import {
   formatRupees,
   formatUpdatedAt,
@@ -32,48 +32,10 @@ export const Route = createFileRoute("/_authenticated/patra-owner-rates")({
 
 function AdminPage() {
   const { user } = Route.useRouteContext();
-  const navigate = useNavigate();
-  const isOwner = useQuery({
-    queryKey: ["is-owner", user.id],
-    queryFn: async () => {
-      const { data, error } = await supabase.rpc("has_role", { _user_id: user.id, _role: "admin" });
-      if (error) throw error;
-      return Boolean(data);
-    },
-  });
-
-  async function signOut() {
-    await supabase.auth.signOut();
-    navigate({ to: "/" });
-  }
-
   return (
-    <section className="bg-cream py-12 md:py-20">
-      <div className="container-lux max-w-3xl">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="eyebrow">Owner</p>
-            <h1 className="mt-2 font-display text-4xl text-foreground sm:text-5xl">Today's Rates</h1>
-            <p className="mt-2 text-sm text-muted-foreground">Signed in as {user.email}</p>
-          </div>
-          <Button variant="outline-gold" size="touch" onClick={signOut}>
-            <LogOut /> Sign out
-          </Button>
-        </div>
-
-        <div className="mt-8">
-          {isOwner.isPending ? (
-            <Skeleton className="h-64 w-full" />
-          ) : isOwner.data ? (
-            <RatesEditor />
-          ) : (
-            <div className="rounded-sm border border-border bg-ivory p-6 text-sm">
-              This account can't change rates. Please sign in with the shop owner's email.
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
+    <OwnerShell user={user} title="Today's Rates">
+      <RatesEditor />
+    </OwnerShell>
   );
 }
 
