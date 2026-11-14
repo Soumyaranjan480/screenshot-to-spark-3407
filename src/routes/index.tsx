@@ -32,6 +32,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { products } = useCatalogProducts();
   return (
     <>
       <HomeHero />
