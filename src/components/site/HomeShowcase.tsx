@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { BUSINESS } from "@/lib/business";
 import { getCategory, highlights } from "@/lib/catalog";
 import heroModel from "@/assets/hero-model.jpg";
 import heroEarrings from "@/assets/hero-earrings.jpg";
@@ -89,7 +90,7 @@ export function HomeHero() {
 
       <div className="container-lux pb-20 pt-28 md:py-24">
         <div className="max-w-xl">
-          <p className="eyebrow animate-fade-up text-[0.62rem] tracking-[0.24em] text-gold-soft sm:text-[0.7rem] sm:tracking-[0.32em]">PATRA JEWELLERS · Jajpur, Odisha</p>
+          <p className="eyebrow animate-fade-up text-[0.62rem] tracking-[0.24em] text-gold-soft sm:text-[0.7rem] sm:tracking-[0.32em]">{BUSINESS.name} · {BUSINESS.locality}</p>
           <h1
             className="mt-3 animate-fade-up text-balance text-[2.1rem] leading-[1.05] text-on-dark sm:mt-5 sm:text-6xl lg:text-7xl"
             style={{ animationDelay: "120ms" }}
