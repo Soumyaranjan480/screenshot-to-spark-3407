@@ -12,6 +12,14 @@ export type MetalRate = {
 
 export const OWNER_EMAIL = "kundusoumyaranjan480@gmail.com";
 
+/** Keep the public display and owner editor on the same rate basis. */
+export function visibleRates(rows: MetalRate[]): MetalRate[] {
+  return rows.filter((r) => r.id === "gold_22k" || r.id === "silver").map((r) => ({
+    ...r,
+    label: r.id === "gold_22k" ? "Gold 22K (916)" : "Silver",
+  }));
+}
+
 /** Indian-style rupee format: 123456 -> "₹1,23,456". Keeps paise only when present. */
 export function formatRupees(value: number): string {
   const hasPaise = Math.round(value * 100) % 100 !== 0;
@@ -57,7 +65,7 @@ export const ratesQueryOptions = queryOptions({
       .select("id, label, unit, rate, sort_order, updated_at")
       .order("sort_order");
     if (error) throw error;
-    return data ?? [];
+    return visibleRates(data ?? []);
   },
   staleTime: 60_000,
 });

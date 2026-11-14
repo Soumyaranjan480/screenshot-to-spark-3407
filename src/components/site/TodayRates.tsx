@@ -26,9 +26,9 @@ export function TodayRates() {
           }
         />
 
-        <ul className="mx-auto mt-8 grid md:mt-10 max-w-5xl grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+        <ul className="mx-auto mt-8 grid md:mt-10 max-w-2xl grid-cols-2 gap-3 sm:gap-5">
           {isPending
-            ? Array.from({ length: 4 }).map((_, i) => (
+            ? Array.from({ length: 2 }).map((_, i) => (
                 <li key={i} className="rounded-sm border border-border bg-card p-5 sm:p-6">
                   <Skeleton className="h-4 w-20" />
                   <Skeleton className="mt-4 h-8 w-28" />

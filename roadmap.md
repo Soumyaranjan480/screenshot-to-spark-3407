@@ -6,4 +6,5 @@
 - [x] Second home view first, auto-change every 5 seconds
 - [ ] Each jewellery type shows 10–14 designs (category page + product page "more designs"), photos on the reference blush colours
 - [x] Top bar shows only "Mangalpur"; owner name is Vijay Kumar Patra
-- [x] Daily gold (24K/22K/18K per 10 g) and silver (per 1 kg) rates on the home page, updated by the owner at /admin
+- [x] Daily Gold 22K (916) and Silver rates, both per 10 g, updated by the owner at the private owner page
+- [x] Home showcase location shows Mangalpur
