@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { BUSINESS } from "@/lib/business";
 import { getCategory, highlights } from "@/lib/catalog";
+import { useCatalogProducts } from "@/lib/live-catalog";
 import heroModel from "@/assets/hero-model.jpg";
 import heroEarrings from "@/assets/hero-earrings.jpg";
 import heroBangles from "@/assets/hero-bangles.jpg";
@@ -171,7 +172,8 @@ export function HomeHero() {
 
 /** Endless, slowly moving ribbon of jewellery pieces. Pauses on hover or keyboard focus. */
 export function JewelleryRibbon() {
-  const items = highlights(2);
+  const { products } = useCatalogProducts();
+  const items = highlights(2, undefined, products);
   return (
     <section aria-label="Jewellery in motion" className="overflow-hidden border-b border-border bg-cream py-9 md:py-14">
       <div className="container-lux mb-6 flex items-end justify-between gap-4 md:mb-8">

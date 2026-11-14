@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { categoriesByMetal, highlights, type Metal } from "@/lib/catalog";
+import { useCatalogProducts } from "@/lib/live-catalog";
 import { defaultEnquiry, whatsappHref } from "@/lib/business";
 import { CategoryGrid } from "./CategoryCard";
 import { PageBanner } from "./PageBanner";
@@ -17,7 +18,8 @@ type Props = {
 
 export function MetalPage({ metal, title, description, image }: Props) {
   const categories = categoriesByMetal(metal);
-  const products = highlights(2, metal);
+  const { products: all } = useCatalogProducts();
+  const products = highlights(2, metal, all);
 
   return (
     <>

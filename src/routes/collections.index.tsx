@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import bannerImage from "@/assets/p-traditional-1.jpg";
-import { CATEGORIES, PRODUCTS, METAL_LABEL, productsByMetal, type Metal } from "@/lib/catalog";
+import { CATEGORIES, METAL_LABEL, productsByMetal, type Metal } from "@/lib/catalog";
+import { useCatalogProducts } from "@/lib/live-catalog";
 import { CategoryGrid } from "@/components/site/CategoryCard";
 import { PageBanner } from "@/components/site/PageBanner";
 import { ProductGrid } from "@/components/site/ProductCard";
@@ -34,7 +35,8 @@ const FILTERS: Filter[] = ["all", "gold", "silver", "traditional"];
 
 function CollectionsPage() {
   const [filter, setFilter] = useState<Filter>("all");
-  const products = filter === "all" ? PRODUCTS : productsByMetal(filter);
+  const { products: all } = useCatalogProducts();
+  const products = filter === "all" ? all : productsByMetal(filter, all);
 
   return (
     <>
