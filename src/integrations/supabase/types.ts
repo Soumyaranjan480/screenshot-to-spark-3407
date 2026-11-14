@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      designs: {
+        Row: {
+          category_slug: string
+          code: string
+          created_at: string
+          description: string
+          id: string
+          image_path: string
+          name: string
+        }
+        Insert: {
+          category_slug: string
+          code: string
+          created_at?: string
+          description?: string
+          id?: string
+          image_path: string
+          name: string
+        }
+        Update: {
+          category_slug?: string
+          code?: string
+          created_at?: string
+          description?: string
+          id?: string
+          image_path?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      hidden_designs: {
+        Row: {
+          code: string
+          hidden_at: string
+        }
+        Insert: {
+          code: string
+          hidden_at?: string
+        }
+        Update: {
+          code?: string
+          hidden_at?: string
+        }
+        Relationships: []
+      }
       metal_rates: {
         Row: {
           id: string
