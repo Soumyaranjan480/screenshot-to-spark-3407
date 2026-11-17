@@ -17,6 +17,7 @@ import { Route as GoldJewelleryRouteImport } from './routes/gold-jewellery'
 import { Route as PatraOwnerLoginRouteImport } from './routes/patra-owner-login'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SilverJewelleryRouteImport } from './routes/silver-jewellery'
+import { Route as AuthenticatedPatraOwnerDesignsRouteImport } from './routes/_authenticated/patra-owner-designs'
 import { Route as AuthenticatedPatraOwnerRatesRouteImport } from './routes/_authenticated/patra-owner-rates'
 import { Route as CollectionsIndexRouteImport } from './routes/collections.index'
 import { Route as CollectionsCategoryRouteImport } from './routes/collections.$category'
@@ -61,6 +62,12 @@ const SilverJewelleryRoute = SilverJewelleryRouteImport.update({
   path: '/silver-jewellery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedPatraOwnerDesignsRoute =
+  AuthenticatedPatraOwnerDesignsRouteImport.update({
+    id: '/patra-owner-designs',
+    path: '/patra-owner-designs',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedPatraOwnerRatesRoute =
   AuthenticatedPatraOwnerRatesRouteImport.update({
     id: '/patra-owner-rates',
@@ -91,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/patra-owner-login': typeof PatraOwnerLoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
+  '/patra-owner-designs': typeof AuthenticatedPatraOwnerDesignsRoute
   '/patra-owner-rates': typeof AuthenticatedPatraOwnerRatesRoute
   '/collections/$category': typeof CollectionsCategoryRoute
   '/products/$code': typeof ProductsCodeRoute
@@ -104,6 +112,7 @@ export interface FileRoutesByTo {
   '/patra-owner-login': typeof PatraOwnerLoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
+  '/patra-owner-designs': typeof AuthenticatedPatraOwnerDesignsRoute
   '/patra-owner-rates': typeof AuthenticatedPatraOwnerRatesRoute
   '/collections/$category': typeof CollectionsCategoryRoute
   '/products/$code': typeof ProductsCodeRoute
@@ -119,6 +128,7 @@ export interface FileRoutesById {
   '/patra-owner-login': typeof PatraOwnerLoginRoute
   '/reset-password': typeof ResetPasswordRoute
   '/silver-jewellery': typeof SilverJewelleryRoute
+  '/_authenticated/patra-owner-designs': typeof AuthenticatedPatraOwnerDesignsRoute
   '/_authenticated/patra-owner-rates': typeof AuthenticatedPatraOwnerRatesRoute
   '/collections/$category': typeof CollectionsCategoryRoute
   '/products/$code': typeof ProductsCodeRoute
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/patra-owner-login'
     | '/reset-password'
     | '/silver-jewellery'
+    | '/patra-owner-designs'
     | '/patra-owner-rates'
     | '/collections/$category'
     | '/products/$code'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/patra-owner-login'
     | '/reset-password'
     | '/silver-jewellery'
+    | '/patra-owner-designs'
     | '/patra-owner-rates'
     | '/collections/$category'
     | '/products/$code'
@@ -161,6 +173,7 @@ export interface FileRouteTypes {
     | '/patra-owner-login'
     | '/reset-password'
     | '/silver-jewellery'
+    | '/_authenticated/patra-owner-designs'
     | '/_authenticated/patra-owner-rates'
     | '/collections/$category'
     | '/products/$code'
@@ -239,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SilverJewelleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/patra-owner-designs': {
+      id: '/_authenticated/patra-owner-designs'
+      path: '/patra-owner-designs'
+      fullPath: '/patra-owner-designs'
+      preLoaderRoute: typeof AuthenticatedPatraOwnerDesignsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/patra-owner-rates': {
       id: '/_authenticated/patra-owner-rates'
       path: '/patra-owner-rates'
@@ -271,10 +291,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedPatraOwnerDesignsRoute: typeof AuthenticatedPatraOwnerDesignsRoute
   AuthenticatedPatraOwnerRatesRoute: typeof AuthenticatedPatraOwnerRatesRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedPatraOwnerDesignsRoute: AuthenticatedPatraOwnerDesignsRoute,
   AuthenticatedPatraOwnerRatesRoute: AuthenticatedPatraOwnerRatesRoute,
 }
 

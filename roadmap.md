@@ -8,3 +8,4 @@
 - [x] Top bar shows only "Mangalpur"; owner name is Vijay Kumar Patra
 - [x] Daily Gold 22K (916) and Silver rates, both per 10 g, updated by the owner at the private owner page
 - [x] Home showcase location shows Mangalpur
+- [x] Owner can upload new designs and delete old ones from the private owner page

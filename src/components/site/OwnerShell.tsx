@@ -51,8 +51,7 @@ export function OwnerShell({ user, title, wide, children }: Props) {
             <Link
               key={t.to}
               to={t.to}
-              className="-mb-px flex min-h-11 items-center border-b-2 border-transparent px-4 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "border-burgundy text-foreground" }}
+              className="-mb-px flex min-h-11 items-center border-b-2 border-transparent px-4 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground data-[status=active]:border-burgundy data-[status=active]:text-foreground"
             >
               {t.label}
             </Link>

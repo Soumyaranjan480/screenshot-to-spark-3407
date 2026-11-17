@@ -31,7 +31,8 @@ use the editor.
 
 ## Project rules
 - Business details (phone, address, owner, WhatsApp links) live only in `src/lib/business.ts`; import from there so contact info never drifts.
-- Demo catalog (categories, products, images) lives in `src/lib/catalog.ts` as static data; no backend until real inventory management is needed.
+- Built-in catalog (categories, sample pieces) stays static in `src/lib/catalog.ts`; owner uploads (`designs` table + private `jewellery-photos` bucket, read via signed links because public buckets are blocked) and deleted samples (`hidden_designs`) are merged in the browser by `useCatalogProducts` in `src/lib/live-catalog.ts`, so every product list must take its list from that hook.
+- Owner pages share `OwnerShell` (tabs + admin check); design upload/delete is at the unlinked `/patra-owner-designs`.
 - Site-wide chrome (header, footer, floating WhatsApp, toaster) is mounted in `src/routes/__root.tsx`; pages render only their own sections.
 - The contact form hands off to WhatsApp with a prefilled message instead of storing submissions, so no enquiry data is kept on a server.
 - Home page showcase (auto-sliding hero + moving jewellery strip) lives in `src/components/site/HomeShowcase.tsx`; its motion respects reduced-motion and pauses on hover/focus so it stays accessible.
